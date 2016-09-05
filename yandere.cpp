@@ -7,6 +7,7 @@
 #include <twitter.h>
 #include <chrono>
 #include <thread>
+#include <algorithm>
 
 template <class InputIterator>
 std::string implode(InputIterator first, InputIterator last, std::string delimiter)
