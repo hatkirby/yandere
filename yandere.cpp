@@ -1,7 +1,6 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include <sstream>
 #include <fstream>
 #include <twitter.h>
@@ -52,9 +51,6 @@ Container split(std::string input, std::string delimiter)
 
 int main(int argc, char** argv)
 {
-  srand(time(NULL));
-  rand(); rand(); rand(); rand();
-  
   YAML::Node config = YAML::LoadFile("config.yml");
   
   twitter::auth auth;
@@ -96,7 +92,10 @@ int main(int argc, char** argv)
       }
     }
   }
-  
+
+  std::random_device random_device;
+  std::mt19937 random_engine{random_device()};
+
   for (;;)
   {
     std::cout << "Generating tweet" << std::endl;
@@ -131,8 +130,10 @@ int main(int argc, char** argv)
       {
         result = "\n";
       } else {
-        auto group = groups[canontkn];
-        result = group[rand() % group.size()];
+        auto& group = groups[canontkn];
+        std::uniform_int_distribution<int> dist(0, group.size() - 1);
+
+        result = group[dist(random_engine)];
       }
       
       if (!eqvarname.empty())
