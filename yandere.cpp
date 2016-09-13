@@ -99,6 +99,9 @@ int main(int argc, char** argv)
   for (;;)
   {
     std::cout << "Generating tweet" << std::endl;
+    
+    std::map<std::string, std::string> variables;
+    
     std::string action = "{MAIN}";
     int tknloc;
     while ((tknloc = action.find("{")) != std::string::npos)
@@ -129,6 +132,9 @@ int main(int argc, char** argv)
       if (canontkn == "\\N")
       {
         result = "\n";
+      } else if (variables.count(canontkn) == 1)
+      {
+        result = variables[canontkn];
       } else {
         auto& group = groups[canontkn];
         std::uniform_int_distribution<int> dist(0, group.size() - 1);
@@ -138,7 +144,7 @@ int main(int argc, char** argv)
       
       if (!eqvarname.empty())
       {
-        groups[eqvarname].push_back(result);
+        variables[eqvarname] = result;
       }
       
       if (modifier == "indefinite")
