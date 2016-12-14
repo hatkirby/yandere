@@ -51,7 +51,14 @@ Container split(std::string input, std::string delimiter)
 
 int main(int argc, char** argv)
 {
-  YAML::Node config = YAML::LoadFile("config.yml");
+  if (argc != 2)
+  {
+    std::cout << "usage: yandere [configfile]" << std::endl;
+    return -1;
+  }
+
+  std::string configfile(argv[1]);
+  YAML::Node config = YAML::LoadFile(configfile);
   
   twitter::auth auth;
   auth.setConsumerKey(config["consumer_key"].as<std::string>());
@@ -62,10 +69,10 @@ int main(int argc, char** argv)
   twitter::client client(auth);
   
   std::map<std::string, std::vector<std::string>> groups;
-  std::ifstream datafile("data.txt");
+  std::ifstream datafile(config["forms"].as<std::string>());
   if (!datafile.is_open())
   {
-    std::cout << "Could not find data.txt" << std::endl;
+    std::cout << "Could not find forms file." << std::endl;
     return 1;
   }
   

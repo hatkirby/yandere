@@ -81,11 +81,12 @@ There is one "special" group name: `{\n}` is always replaced by a newline.
 
 ## Configuration
 
-`yandere` looks for a file named `data.txt` in its working directory, and uses it as its datafile. As explained above, this datafile should at least have a group named `MAIN`. The bot also looks for a file named `config.yml`, from which it reads the details for authenticating with Twitter. This configuration file should have the following format, with the appropriate tokens inserted between the appropriate pairs of double quotes:
+When you run `yandere`, you pass it the path of a configuration file that tells the bot where to look for its datafile, which it calls "forms". As explained above, this datafile should at least have a group named `MAIN`. The bot also reads the details for authenticating with Twitter from this configuration file. This file should have the following format, with the appropriate tokens inserted between the appropriate pairs of double quotes:
 ```yaml
 ---
   consumer_key: ""
   consumer_secret: ""
   access_key: ""
   access_secret: ""
+  forms: "data.txt"
 ```
