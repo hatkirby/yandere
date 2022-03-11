@@ -94,8 +94,15 @@ int main(int argc, char** argv)
       if (line.empty())
       {
         newgroup = true;
+      } else if (line.substr(0, 2) == "{*") {
+        std::string token = line.substr(2, line.find("}")-2);
+        for (const std::string& other : groups[token]) {
+          groups[curgroup].push_back(other);
+          std::cout << curgroup << " *" << token << ": " << other << std::endl;
+        }
       } else {
         groups[curgroup].push_back(line);
+        std::cout << curgroup << ": " << line << std::endl;
       }
     }
   }
