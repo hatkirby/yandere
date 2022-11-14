@@ -4,3 +4,6 @@
 [submodule "vendor/libtwittercpp"]
 	path = vendor/libtwittercpp
 	url = https://github.com/hatkirby/libtwittercpp
+[submodule "vendor/mastodonpp"]
+	path = vendor/mastodonpp
+	url = https://schlomp.space/tastytea/mastodonpp.git
