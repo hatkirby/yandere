@@ -1,11 +1,11 @@
 # yandere
-Simple text substitution Twitter bot in the vein of [chemist](https://github.com/hatkirby/chemist), but without the dependency on [verbly](https://github.com/hatkirby/verbly). Tweets every hour, generating text based off of a data file constructed with a simple syntax.
+Simple text substitution Mastodon bot in the vein of [chemist](https://github.com/hatkirby/chemist), but without the dependency on [verbly](https://github.com/hatkirby/verbly). Posts every hour, generating text based off of a data file constructed with a simple syntax.
 
-It uses my Twitter library [libtwitter++](https://github.com/hatkirby/libtwittercpp) to post to Twitter, and [YAMLcpp](https://github.com/jbeder/yaml-cpp) to read a configuration file.
+It uses [mastodonpp](https://schlomp.space/tastytea/mastodonpp) to post to Mastodon, and [YAMLcpp](https://github.com/jbeder/yaml-cpp) to read a configuration file.
 
 Examples of `yandere` bots:
 
-- [@bbbbbbbbbbbaka](https://twitter.com/bbbbbbbbbbbaka) (d-su), which posts inside jokes that no one understands
+- [@baka@beppo.online](https://beppo.online/@baka) (d-su), which posts inside jokes that no one understands
 
 ## Syntax
 
@@ -81,12 +81,10 @@ There is one "special" group name: `{\n}` is always replaced by a newline.
 
 ## Configuration
 
-When you run `yandere`, you pass it the path of a configuration file that tells the bot where to look for its datafile, which it calls "forms". As explained above, this datafile should at least have a group named `MAIN`. The bot also reads the details for authenticating with Twitter from this configuration file. This file should have the following format, with the appropriate tokens inserted between the appropriate pairs of double quotes:
+When you run `yandere`, you pass it the path of a configuration file that tells the bot where to look for its datafile, which it calls "forms". As explained above, this datafile should at least have a group named `MAIN`. The bot also reads the details for authenticating with Mastodon from this configuration file. This file should have the following format, with the appropriate tokens inserted between the appropriate pairs of double quotes:
 ```yaml
 ---
-  consumer_key: ""
-  consumer_secret: ""
-  access_key: ""
-  access_secret: ""
+  mastodon_instance: ""
+  mastodon_token: ""
   forms: "data.txt"
 ```
