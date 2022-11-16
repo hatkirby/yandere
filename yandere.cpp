@@ -3,7 +3,7 @@
 #include <random>
 #include <sstream>
 #include <fstream>
-#include <mastodonpp.hpp>
+#include <mastodonpp/mastodonpp.hpp>
 #include <chrono>
 #include <thread>
 #include <algorithm>
@@ -203,7 +203,7 @@ void run(const std::string& configfile)
     std::cout << action << std::endl;
     std::cout << "Waiting" << std::endl;
 
-    std::this_thread::sleep_for(std::chrono::hours(1));
+    std::this_thread::sleep_for(std::chrono::hours(2));
 
     std::cout << std::endl;
   }
